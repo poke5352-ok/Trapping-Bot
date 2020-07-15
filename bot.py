@@ -2,8 +2,37 @@ import discord
 from discord.ext import commands
 import os 
 
+cogs = [
+    "cogs.moderation",
+    "cogs.general",
+    "cogs.co-owner"
+
+]
 
 client = commands.Bot(command_prefix="!")
+
+for cog in cogs:
+    try:
+        client.load_extension(cog)
+    except Exception as e:
+        print(e)
+
+@client.command()
+@commands.has_any_role("Mod", "Admin", "Owner")
+async def reload(ctx):
+    """ Reload all extensions """
+    for exten in cogs:
+        try:
+            client.reload_extension(exten)
+        except Exception as e:
+            print(e)
+    await ctx.send("Reload Succesful")   
+
+
+@client.command()
+async def ping(ctx):
+    await ctx.send(f'Pong! {round(client.latency * 1000) }ms')    
+
 
 @client.event
 async def on_ready():
@@ -12,9 +41,7 @@ async def on_ready():
 
 
 
-@client.command()
-async def ping(ctx):
-    await ctx.send(f'Pong! {round(client.latency * 1000) }ms')
+
 
 
 
@@ -30,4 +57,4 @@ async def clear(ctx, amount=5):
 
  
 
-client.run(os.environ['token'])
+client.run(os.environ['token']) #os.environ['token']
