@@ -5,11 +5,11 @@ import os
 cogs = [
     "cogs.moderation",
     "cogs.general",
-    "cogs.co-owner"
+    "cogs.co-owner",
 
 ]
 
-client = commands.Bot(command_prefix="!")
+client = commands.Bot(command_prefix=".")
 
 for cog in cogs:
     try:
@@ -18,7 +18,7 @@ for cog in cogs:
         print(e)
 
 @client.command()
-@commands.has_any_role("Mod", "Admin", "Owner")
+@commands.has_any_role("Mod", "Admin", "Owner", "Co-Owner")
 async def reload(ctx):
     """ Reload all extensions """
     for exten in cogs:

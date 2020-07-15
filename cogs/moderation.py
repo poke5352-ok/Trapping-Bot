@@ -13,8 +13,7 @@ class moderation(commands.Cog):
             pass
         else:
             if "discord.gg/" in message.content:
-                await message.delete() 
-                
+                pass
 
 
 def setup(bot):
