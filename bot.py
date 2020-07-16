@@ -5,6 +5,7 @@ import os
 cogs = [
     "cogs.general",
     "cogs.co-owner",
+    "cogs.housing"
 
 ]
 
