@@ -3,7 +3,6 @@ from discord.ext import commands
 import os 
 
 cogs = [
-    "cogs.moderation",
     "cogs.general",
     "cogs.co-owner",
 
