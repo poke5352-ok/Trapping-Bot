@@ -29,31 +29,12 @@ async def reload(ctx):
     await ctx.send("Reload Succesful")   
 
 
-@client.command()
-async def ping(ctx):
-    await ctx.send(f'Pong! {round(client.latency * 1000) }ms')    
+    
 
 
 @client.event
 async def on_ready():
     print('Bot is Ready')
-
-
-
-
-
-
-
-
-@client.command()
-@commands.has_any_role("Mod", "Admin", "Owner", "Co-Owner")
-async def clear(ctx, amount=5):
-    await ctx.channel.purge(limit=amount)
-
-
-
-
-
 
 
  
