@@ -46,6 +46,7 @@ async def on_ready():
 
 
 @client.command()
+@commands.has_any_role("Mod", "Admin", "Owner", "Co-Owner")
 async def clear(ctx, amount=5):
     await ctx.channel.purge(limit=amount)
 
