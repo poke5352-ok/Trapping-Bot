@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import os 
-import json
+
 
 cogs = [
     "cogs.general",
@@ -36,12 +36,6 @@ async def reload(ctx):
 
 @client.event
 async def on_ready():
-    try:
-        with open('client_secret1.json', 'w') as file:
-            json.dump(os.environ['jsonfile'], file)
-    except:
-        channel = self.bot.get_channel(722724050190991456)
-            await channel.send('Failed')
 
     
 
