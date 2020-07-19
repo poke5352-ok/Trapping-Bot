@@ -51,6 +51,7 @@ class fossils(commands.Cog):
             listlen = len(list)
             sheet.update_cell(listlen+1, 1, name)
             sheet.update_cell(listlen+1, 2, 0+int(add))
+            await ctx.send("Fossils added.")
             
     @commands.command()
     @commands.has_any_role("Admin", "Mod", "Co-Owner", "Owner", "Head-Co")
@@ -77,7 +78,7 @@ class fossils(commands.Cog):
             listlen = len(list)
             sheet.update_cell(listlen+1, 1, name)
             sheet.update_cell(listlen+1, 3, 0+int(add))
-
+            await ctx.send("Win added.")
             
     @commands.command()
     async def wincheck(self, ctx, name):
