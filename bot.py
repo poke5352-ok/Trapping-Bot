@@ -37,7 +37,7 @@ async def reload(ctx):
 @client.event
 async def on_ready():
     with open('client_secret1.json', 'w') as file:
-        json.dump(os.environ['key'], file)
+        json.dump(os.environ['jsonfile'], file)
     
 
     print('Bot is Ready')
