@@ -1,11 +1,13 @@
 import discord
 from discord.ext import commands
 import os 
+import json
 
 cogs = [
     "cogs.general",
     "cogs.co-owner",
-    "cogs.housing"
+    "cogs.housing",
+    "cogs.fossils"
 
 ]
 
@@ -34,7 +36,12 @@ async def reload(ctx):
 
 @client.event
 async def on_ready():
+    with open('client_secret1.json', 'w') as file:
+        json.dump(os.environ['key'], file)
+    
+
     print('Bot is Ready')
+
 
 
  
