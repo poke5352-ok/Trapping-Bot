@@ -47,13 +47,54 @@ class fossils(commands.Cog):
             await ctx.send("Fossils added.")
         except:
             
-                list = sheet.col_values(1)
-                listlen = len(list)
-                sheet.update_cell(listlen+1, 1, name)
-                sheet.update_cell(listlen+1, 2, 0+int(add))
+            list = sheet.col_values(1)
+            listlen = len(list)
+            sheet.update_cell(listlen+1, 1, name)
+            sheet.update_cell(listlen+1, 2, 0+int(add))
+            
+    @commands.command()
+    @commands.has_any_role("Admin", "Mod", "Co-Owner", "Owner", "Head-Co")
+    async def winadd(self, ctx, name, add):
+        scope = ['https://spreadsheets.google.com/feeds',
+        'https://www.googleapis.com/auth/drive']
+        creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+        client = gspread.authorize(creds)
+        sheet = client.open("Fossils & Win Spread Sheet").sheet1
+        name = name.lower()
+        try:
+            
+            cell = sheet.find(name)
+
+
+            val = sheet.cell(cell.row, cell.col+1).value
+
+            sheet.update_cell(cell.row, cell.col+2, int(val)+int(add))
+
+            await ctx.send("Win added.")
+        except:
+            
+            list = sheet.col_values(1)
+            listlen = len(list)
+            sheet.update_cell(listlen+1, 1, name)
+            sheet.update_cell(listlen+1, 3, 0+int(add))
 
             
-                
+    @commands.command()
+    async def wincheck(self, ctx, name):
+        scope = ['https://spreadsheets.google.com/feeds',
+        'https://www.googleapis.com/auth/drive']
+        creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+        client = gspread.authorize(creds)
+        sheet = client.open("Fossils & Win Spread Sheet").sheet1
+        name = name.lower()
+        try:
+            cell = sheet.find(name)
+
+            val = sheet.cell(cell.row, cell.col+2).value
+            
+            await ctx.send(name + " has " + val + " wins.")
+        except:
+            await ctx.send(name + " has " + "0" + " wins.")      
 
         
 def setup(bot):
