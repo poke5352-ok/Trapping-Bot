@@ -14,7 +14,7 @@ class fossils(commands.Cog):
     async def fossilcheck(self, ctx, name):
         scope = ['https://spreadsheets.google.com/feeds',
         'https://www.googleapis.com/auth/drive']
-        creds = ServiceAccountCredentials.from_json_keyfile_name('bot-data/client_secret1.json', scope)
+        creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret1.json', scope)
         client = gspread.authorize(creds)
         sheet = client.open("Fossils & Win Spread Sheet").sheet1
         name = name.lower()
@@ -31,7 +31,7 @@ class fossils(commands.Cog):
     async def fossiladd(self, ctx, name, add):
         scope = ['https://spreadsheets.google.com/feeds',
         'https://www.googleapis.com/auth/drive']
-        creds = ServiceAccountCredentials.from_json_keyfile_name('bot-data/client_secret1.json', scope)
+        creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret1.json', scope)
         client = gspread.authorize(creds)
         sheet = client.open("Fossils & Win Spread Sheet").sheet1
         name = name.lower()
